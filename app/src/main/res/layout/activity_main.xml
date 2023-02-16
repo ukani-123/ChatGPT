@@ -5,14 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/RecyclerView"
         android:layout_above="@+id/ChatBox"/>
-    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,14 +20,12 @@
         android:textSize="28dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:padding="8dp"
         android:id="@+id/ChatBox">
-
         <EditText
             android:id="@+id/MessageBox"
             android:layout_width="match_parent"
@@ -40,7 +35,6 @@
             android:background="@drawable/rounded_corner"
             android:hint="Write Here Your Questions..."
             android:padding="16dp" />
-
         <ImageButton
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -52,8 +46,5 @@
             android:src="@drawable/send"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="TODO" />
-
-
     </RelativeLayout>
-
 </RelativeLayout>

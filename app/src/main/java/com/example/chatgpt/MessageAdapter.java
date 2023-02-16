@@ -1,5 +1,4 @@
 package com.example.chatgpt;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
-
     List<Messsege> messsegeList;
     public MessageAdapter(List<Messsege> messsegeList) {
         this.messsegeList=messsegeList;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,7 +21,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         MyViewHolder myViewHolder = new MyViewHolder(ChatView);
         return myViewHolder;
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Messsege messsege = messsegeList.get(position);
@@ -39,17 +34,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             holder.LeftChatBoxMessage.setText(messsege.getMessage());
         }
     }
-
     @Override
     public int getItemCount() {
         return messsegeList.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
-
         LinearLayout LeftChatBox,RightChatBox;
         TextView LeftChatBoxMessage,RightChatBoxMessage;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             LeftChatBox = itemView.findViewById(R.id.LeftChatBox);
@@ -58,5 +49,4 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             RightChatBoxMessage = itemView.findViewById(R.id.RightChatBoxMessage);
         }
     }
-
 }
