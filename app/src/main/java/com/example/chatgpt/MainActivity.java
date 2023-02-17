@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization","Bearer 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")
+                .header("Authorization","Bearer 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")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject;
                         try {
                             jsonObject = new JSONObject(response.body().string());
-                            JSONArray jsonArray = jsonObject.getJSONArray("choices");
+                                JSONArray jsonArray = jsonObject.getJSONArray("choices");
                             String result =     jsonArray.getJSONObject(0).getString("text");
                             AddResponse(result.trim());
                         } catch (JSONException e) {

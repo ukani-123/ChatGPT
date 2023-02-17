@@ -8,13 +8,13 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#2196F3"
-        android:padding="8dp"
         android:id="@+id/LeftChatBox"
         android:layout_marginEnd="80dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:padding="8dp"
             android:id="@+id/LeftChatBoxMessage"
             android:textSize="18dp"/>
     </LinearLayout>
@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="#8A939A"
-        android:padding="8dp"
         android:id="@+id/RightChatBox"
         android:layout_marginStart="80dp"
         android:layout_alignParentEnd="true">
@@ -31,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:padding="8dp"
             android:id="@+id/RightChatBoxMessage"
             android:textSize="18dp"/>
     </LinearLayout>
