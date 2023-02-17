@@ -1,7 +1,6 @@
 package com.example.chatgpt;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -90,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization","Bearer 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")
+                .header("Authorization","Bearer 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")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    AddResponse("Failed to load response due to "+e.getMessage());
+                    AddResponse("Failed");
             }
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
@@ -106,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
                             jsonObject = new JSONObject(response.body().string());
                                 JSONArray jsonArray = jsonObject.getJSONArray("choices");
                             String result =     jsonArray.getJSONObject(0).getString("text");
-                            AddResponse(result.trim());
+                            AddResponse(result);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
 
                     }else{
                         assert response.body() != null;
-                        AddResponse("Failed to load response due to "+response.body());
+                        AddResponse("Failed");
                     }
             }
         });
