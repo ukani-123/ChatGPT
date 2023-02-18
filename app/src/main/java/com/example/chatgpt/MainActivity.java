@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             String question = messegebox.getText().toString().trim();
             AddToChat(question,Messsege.SENT_BY_ME);
             messegebox.setText("");
-            welocme.setVisibility(View.GONE);
             callAPI(question);
+            welocme.setVisibility(View.GONE);
         });
     }
     //FUN
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization","Bearer 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")
+                .header("Authorization","Bearer  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")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {

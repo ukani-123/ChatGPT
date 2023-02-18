@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="Welcome To ChatCPT"
+        android:text="Start Your Activity"
         android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold" />
@@ -37,7 +37,7 @@
             android:textColor="@color/black"
             android:inputType="textCapSentences"
             android:background="@drawable/rounded_corner"
-            android:hint="Write Here Your Questions..."
+            android:hint="Ask a Question..."
             android:padding="16dp" />
 
         <ImageButton
