@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     EditText  messegebox;
     List<Messsege> messsegeList;
     MessageAdapter messageAdapter;
-    public static final MediaType JSON  = MediaType.get("application/json; charset=utf-8");
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +43,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //BINDING
         messsegeList = new ArrayList<>();
+
         recyclerView = findViewById(R.id.RecyclerView);
         welocme = findViewById(R.id.welcome);
         send = findViewById(R.id.SendBtn);
         messegebox = findViewById(R.id.MessageBox);
+
         //SET_UP_RECYCLERVIEW
         messageAdapter = new MessageAdapter(messsegeList);
         recyclerView.setAdapter(messageAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setStackFromEnd(true);
+        recyclerView.setLayoutManager(llm);
         //CLICK
-        send.setOnClickListener(view -> {
+        send.setOnClickListener((v) -> {
             String question = messegebox.getText().toString().trim();
             AddToChat(question,Messsege.SENT_BY_ME);
             messegebox.setText("");
-            callAPI(question);
             welocme.setVisibility(View.GONE);
+            callAPI(question);
         });
     }
     //FUN
     void AddToChat(String Message, String SentBy){
-        runOnUiThread(() -> {
-            boolean add = messsegeList.add(new Messsege(Message, SentBy));
-            messageAdapter.notifyDataSetChanged();
-            recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
-        });
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    messsegeList.add(new Messsege(Message, SentBy));
+                    messageAdapter.notifyDataSetChanged();
+                    recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
+                }
+            });
     }
     //FUN
     void AddResponse(String response){
@@ -77,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         //FUN
     void callAPI (String question){
         messsegeList.add(new Messsege("Typing...",Messsege.SENT_BY_BOT));
+
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model","text-davinci-003");
@@ -84,18 +91,18 @@ public class MainActivity extends AppCompatActivity {
             jsonBody.put("max_tokens",4000);
             jsonBody.put("temperature",0);
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization","Bearer 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")
+                .header("Authorization","Bearer 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")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    AddResponse("Failed");
+                    AddResponse("Failed"+e.getMessage());
             }
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
@@ -103,19 +110,17 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject;
                         try {
                             jsonObject = new JSONObject(response.body().string());
-                                JSONArray jsonArray = jsonObject.getJSONArray("choices");
-                            String result =     jsonArray.getJSONObject(0).getString("text");
-                            AddResponse(result);
+                            JSONArray jsonArray = jsonObject.getJSONArray("choices");
+                            String result  =  jsonArray.getJSONObject(0).getString("text");
+                            AddResponse(result.trim());
                         } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                           e.printStackTrace();
                         }
-
                     }else{
                         assert response.body() != null;
-                        AddResponse("Failed");
+                        AddResponse("Failed"+response.body().toString());
                     }
             }
         });
     }
-
 }

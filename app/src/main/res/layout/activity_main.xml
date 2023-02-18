@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#10A27E"
     tools:context=".MainActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/RecyclerView"
         android:layout_above="@+id/ChatBox"/>
+
     <TextView
+        android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome To ChatCPT"
-        android:id="@+id/welcome"
-        android:gravity="center"
         android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Welcome To ChatCPT"
+        android:textColor="@color/white"
         android:textSize="28dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textStyle="bold" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -32,19 +34,22 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_toLeftOf="@id/SendBtn"
+            android:textColor="@color/black"
+            android:inputType="textCapSentences"
             android:background="@drawable/rounded_corner"
             android:hint="Write Here Your Questions..."
             android:padding="16dp" />
+
         <ImageButton
+            android:id="@+id/SendBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
-            android:id="@+id/SendBtn"
             android:layout_centerInParent="true"
             android:layout_marginStart="10dp"
-            android:padding="8dp"
-            android:src="@drawable/send"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            android:padding="8dp"
+            android:src="@drawable/send" />
     </RelativeLayout>
 </RelativeLayout>
